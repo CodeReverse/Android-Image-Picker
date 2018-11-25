@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ImagePicker</string>
+    <string name="album">相册</string>
+    <string name="browse">预览</string>
+    <string name="title_picture">图片</string>
+    <string name="title_choose_picture">选择图片</string>
+    <string name="dialog_text_ok">我知道了</string>
+    <string name="done">完成</string>
+    <string name="select_done">完成(%S)</string>
+    <string name="tips">您最多只能选%s张图片</string>
+</resources>

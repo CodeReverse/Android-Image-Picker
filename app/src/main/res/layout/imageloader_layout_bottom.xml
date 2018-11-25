@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+    <TextView
+            android:id="@+id/tv_browse"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:text="@string/browse"
+            android:textColor="@color/text_gray"
+            android:textSize="14sp"/>
+
+    <Button
+            android:id="@+id/btn_finish"
+            android:layout_width="55dp"
+            android:layout_height="28dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_radius_blue_finish_button"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"/>
+</RelativeLayout>
