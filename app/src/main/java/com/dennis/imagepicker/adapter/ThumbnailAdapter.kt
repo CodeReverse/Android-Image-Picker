@@ -14,7 +14,7 @@ import com.dennis.imagepicker.loader.ImageLoader
 import com.dennis.imagepicker.loader.ImageLoaderUtil
 import com.dennis.imagepicker.model.OnItemClickListener
 import com.dennis.imagepicker.model.SelectedImageInfo
-import com.dennis.imagepicker.ui.GalleryFragment
+import com.dennis.imagepicker.ui.ImagePickerActivity
 
 class ThumbnailAdapter(private var pictureList: ArrayList<SelectedImageInfo>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -42,14 +42,14 @@ class ThumbnailAdapter(private var pictureList: ArrayList<SelectedImageInfo>) :
             .url(imageInfo.path)
             .type(ImageLoaderUtil.PIC_THUMBNAIL)
             .fromStorage(true)
-            .tag(GalleryFragment.TAG_PICASSO)
+            .tag(ImagePickerActivity.TAG_PICASSO)
             .build()
         ImageLoaderUtil.getInstance().loadImage(imageLoader)
 
         if (position == selectedPosition) {
             holder.thumbIv.background = ContextCompat.getDrawable(holder.thumbIv.context, R.drawable.bg_image_border)
         } else {
-            holder.thumbIv.background = ContextCompat.getDrawable(holder.thumbIv.context,R.drawable.bg_image_border_transparent)
+            holder.thumbIv.background = ContextCompat.getDrawable(holder.thumbIv.context, R.drawable.bg_image_border_transparent)
         }
 
         val colorMatrix = ColorMatrix()

@@ -15,10 +15,9 @@ import com.dennis.imagepicker.loader.ImageLoader
 import com.dennis.imagepicker.loader.ImageLoaderUtil
 import com.dennis.imagepicker.model.OnItemClickListener
 import com.dennis.imagepicker.model.SelectedImageInfo
-import com.dennis.imagepicker.ui.GalleryFragment
+import com.dennis.imagepicker.ui.ImagePickerActivity
 
-class GalleryAdapter(private var pictureList: ArrayList<SelectedImageInfo>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class GalleryAdapter(private var pictureList: ArrayList<SelectedImageInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var onItemClickListener: OnItemClickListener
     private var mSelectedList: ArrayList<Int> = ArrayList()
 
@@ -42,16 +41,16 @@ class GalleryAdapter(private var pictureList: ArrayList<SelectedImageInfo>) :
             .url(imageInfo.path)
             .type(ImageLoaderUtil.PIC_THUMBNAIL)
             .fromStorage(true)
-            .tag(GalleryFragment.TAG_PICASSO)
+            .tag(ImagePickerActivity.TAG_PICASSO)
             .build()
         ImageLoaderUtil.getInstance().loadImage(imageLoader)
         if (mSelectedList.contains(position)) {
-            holder.chooseFlagIv.setImageResource(Setting.iconSource[mSelectedList.indexOf(position)])
+            holder.chosenFlagIv.setImageResource(Setting.iconSource[mSelectedList.indexOf(position)])
         } else {
-            holder.chooseFlagIv.setImageResource(R.drawable.icon_unselected)
+            holder.chosenFlagIv.setImageResource(R.drawable.icon_unselected)
         }
 
-        // 选中九张图片后，其余图片灰度处理
+        // 超出选中的图片限制后，其余图片灰度处理
         val colorMatrix = ColorMatrix()
         if (mSelectedList.size >= Setting.MAX_SELECTED && !mSelectedList.contains(position)) {
             holder.pictureIv.setBackgroundColor(ContextCompat.getColor(holder.pictureIv.context, android.R.color.white))
@@ -65,7 +64,7 @@ class GalleryAdapter(private var pictureList: ArrayList<SelectedImageInfo>) :
 
         holder.chooseSectionRl.setOnClickListener { p0 ->
             if (p0 != null) {
-                onItemClickListener.onItemClick(holder.chooseFlagIv, position)
+                onItemClickListener.onItemClick(holder.chosenFlagIv, position)
             }
         }
 
@@ -87,7 +86,7 @@ class GalleryAdapter(private var pictureList: ArrayList<SelectedImageInfo>) :
     inner class GalleryHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var rootView: RelativeLayout = itemView.findViewById(R.id.root)
         var pictureIv: ImageView = itemView.findViewById(R.id.iv_picture)
-        var chooseFlagIv: ImageView = itemView.findViewById(R.id.iv_choose_flag)
+        var chosenFlagIv: ImageView = itemView.findViewById(R.id.iv_chosen_flag)
         var chooseSectionRl: RelativeLayout = itemView.findViewById(R.id.rl_choose_section)
 
     }

@@ -21,6 +21,7 @@ import com.dennis.imagepicker.model.ImageFolder
 import com.dennis.imagepicker.model.OnItemClickListener
 import com.dennis.imagepicker.model.SelectedImageInfo
 import com.dennis.imagepicker.ui.ImagePickerActivity.Companion.EXTRA_KEY_DATA_SOURCE
+import com.dennis.imagepicker.ui.ImagePickerActivity.Companion.TAG_PICASSO
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_gallery.*
 import kotlinx.android.synthetic.main.imageloader_layout_bottom.view.*
@@ -39,9 +40,6 @@ class GalleryFragment : Fragment(), View.OnClickListener {
     private var mSelectedPosition: ArrayList<Int> = ArrayList()
 
     companion object {
-
-        const val TAG_PICASSO = "Gallery"
-
         fun newInstance(imageFolder: ImageFolder?): GalleryFragment {
             val galleryFragment = GalleryFragment()
             val bundle = Bundle()
@@ -170,6 +168,7 @@ class GalleryFragment : Fragment(), View.OnClickListener {
         fTransaction?.commitAllowingStateLoss()
     }
 
+    // 本地图片检索完成
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onFolderFinish(folderFinish: OnFolderFinish) {
         val folder = folderFinish.folder
@@ -202,14 +201,12 @@ class GalleryFragment : Fragment(), View.OnClickListener {
         if (selectedCount > 0) {
             gallery_bottom.tv_browse.setTextColor(ContextCompat.getColor(context!!, android.R.color.white))
             gallery_bottom.btn_finish.text = String.format(getString(R.string.select_done), selectedCount)
-            gallery_bottom.btn_finish.background =
-                    ContextCompat.getDrawable(context!!, R.drawable.shape_radius_blue_finish_button)
+            gallery_bottom.btn_finish.background = ContextCompat.getDrawable(context!!, R.drawable.shape_radius_blue_finish_button)
             gallery_bottom.btn_finish.isEnabled = true
             gallery_bottom.tv_browse.isEnabled = true
         } else {
             gallery_bottom.btn_finish.text = getString(R.string.done)
-            gallery_bottom.btn_finish.background =
-                    ContextCompat.getDrawable(context!!, R.drawable.shape_radius_gray_finish_button)
+            gallery_bottom.btn_finish.background = ContextCompat.getDrawable(context!!, R.drawable.shape_radius_gray_finish_button)
             gallery_bottom.tv_browse.setTextColor(ContextCompat.getColor(context!!, R.color.text_color_dark_gray))
             gallery_bottom.btn_finish.isEnabled = false
             gallery_bottom.tv_browse.isEnabled = false

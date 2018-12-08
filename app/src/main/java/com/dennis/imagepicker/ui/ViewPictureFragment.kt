@@ -172,7 +172,7 @@ class ViewPictureFragment : Fragment(), View.OnClickListener {
             .url(picPath)
             .type(ImageLoaderUtil.PIC_LARGE)
             .fromStorage(true)
-            .tag(GalleryFragment.TAG_PICASSO)
+            .tag(ImagePickerActivity.TAG_PICASSO)
             .build()
         ImageLoaderUtil.getInstance().loadImage(imageLoader)
     }

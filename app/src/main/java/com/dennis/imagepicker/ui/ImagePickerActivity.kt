@@ -1,8 +1,11 @@
 package com.dennis.imagepicker.ui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import com.dennis.imagepicker.R
+import com.dennis.imagepicker.Setting
 import com.dennis.imagepicker.model.SelectedImageInfo
 import kotlinx.android.synthetic.main.activity_picker.*
 
@@ -12,6 +15,8 @@ class ImagePickerActivity : FragmentActivity() {
         const val EXTRA_KEY_DATA_SOURCE = "EXTRA_KEY_DATA_SOURCE"
         const val EXTRA_KEY_DATA_SELECTED = "EXTRA_KEY_DATA_SELECTED"
         const val EXTRA_KEY_BROWSE_INDEX = "EXTRA_KEY_BROWSE_INDEX"
+
+        const val TAG_PICASSO = "Gallery"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,11 +30,14 @@ class ImagePickerActivity : FragmentActivity() {
     }
 
     fun showAlert() {
-//        val confirm = IOSConfirm.Builder(this).setMessage(mMultiImagePick.tip).setPositiveButton(getContextWrapper().resources.getString(R.string.dialog_text_ok), { dialog, _ -> dialog.dismiss() }).createAlert()
-//        confirm.setCancelable(false)
-//        if (!this.supportFragmentManager.findFragmentById(fragment_container.id).isDetached) {
-//            confirm.show()
-//        }
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setMessage(String.format(getString(R.string.tips), Setting.MAX_SELECTED))
+        dialogBuilder.setPositiveButton(getString(R.string.dialog_text_ok), object : DialogInterface.OnClickListener {
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+                p0?.dismiss()
+            }
+        })
+        dialogBuilder.create().show()
     }
 
     fun finishSelect(pictures: ArrayList<SelectedImageInfo>) {

@@ -1,4 +1,4 @@
-package com.dennis.imagepicker
+package com.dennis.imagepicker.ui
 
 import android.Manifest
 import android.content.Intent
@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import com.dennis.imagepicker.ui.ImagePickerActivity
+import com.dennis.imagepicker.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,23 +21,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btn_pick_image.setOnClickListener {
-           requestPermission()
+            requestPermission()
         }
     }
 
-    private fun  requestPermission(){
+    private fun requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE)
             } else {
-               startAty()
+                startAty()
             }
         } else {
             startAty()
         }
     }
 
-    private fun startAty(){
+    private fun startAty() {
         val intent = Intent(this, ImagePickerActivity::class.java)
         startActivity(intent)
     }
@@ -53,7 +53,8 @@ class MainActivity : AppCompatActivity() {
             for (i in 0 until grantResults.size) {
                 if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                     //判断是否勾选禁止后不再询问
-                    val showRequestPermission = ActivityCompat.shouldShowRequestPermissionRationale(this@MainActivity, permissions[i])
+                    val showRequestPermission =
+                        ActivityCompat.shouldShowRequestPermissionRationale(this@MainActivity, permissions[i])
                     if (showRequestPermission) {
                     }
                 }
