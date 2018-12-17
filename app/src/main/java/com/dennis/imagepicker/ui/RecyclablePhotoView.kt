@@ -2,7 +2,7 @@ package com.dennis.imagepicker.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import uk.co.senab.photoview.PhotoView
+import com.github.chrisbanes.photoview.PhotoView
 
 class RecyclablePhotoView : PhotoView {
     constructor(ctx: Context) : super(ctx)

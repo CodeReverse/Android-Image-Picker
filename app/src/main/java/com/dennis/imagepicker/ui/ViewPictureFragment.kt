@@ -269,7 +269,7 @@ class ViewPictureFragment : Fragment(), View.OnClickListener {
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
             val imageLayout = LayoutInflater.from(activity).inflate(R.layout.item_browse, container, false)
             val imageView = imageLayout.findViewById<RecyclablePhotoView>(R.id.page_image)
-            imageView.setOnViewTapListener { view, _, _ ->
+            imageView.setOnPhotoTapListener { view, _, _ ->
                 if (view != null) {
                     if (view_picture_title.visibility == View.VISIBLE) {
                         view_picture_title.visibility = View.INVISIBLE
